@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import right from '../../src/Assets/images/icon-arrow.svg'
 import './Home.css'
 function Home() {
     const [ipdata, setIpdata] = useState()
@@ -26,9 +27,10 @@ function Home() {
 
         <div>
             <div className="top">
+                <h2 className="heading">IP Address Tracker</h2>
                 <div className="form">
-                    <input type="text" name="userip" id="userip" onChange={(e)=>setUserip(e.target.value)} />
-                    <button onClick={clicked}>check</button>
+                    <input type="text" name="userip" id="userip" onChange={(e)=>setUserip(e.target.value)} placeholder="search for any ip address" />
+                    <button onClick={clicked}><img src={right} alt="" /></button> 
                 </div>
             </div>
             <div className="middle">
