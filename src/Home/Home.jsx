@@ -25,21 +25,29 @@ function Home() {
         }).catch((error)=>{
             alert(error.message)
         })
-       // setLat(ipdata.location.lat)
-       // setLng(ipdata.location.lng)
+      // setLat(ipdata ? ipdata.location.lat : "")
+      // setLng(ipdata ? ipdata.location.lng : "")
+      // alert(lat,lng) 
 
         if (map.current) return; // initialize map only once
         map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [lat, lng],
+        center: [ipdata ? ipdata.location.lat : "0", ipdata ? ipdata.location.lng : "0"],
         zoom: zoom
         });
     }
     //----------------------
 
     useEffect(() => {
-        ipcalled()
+     
+     if (map.current) return; // initialize map only once
+        map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [lat, lng],
+        zoom: zoom
+        });
         
         });
     //--------------------
@@ -64,19 +72,19 @@ function Home() {
                    <div className="row ">
                    <div className="col-md-3 text-left">
                        IP ADDRESS <br />
-                       <h3>{ipdata ? ipdata.ip : ""}</h3>
+                       <h3>{ipdata ? ipdata.ip : "157.44.186.61"}</h3>
                    </div>
                    <div className="col-md-3 text-left">
                        LOCATION
-                       <h3>{ipdata ? ipdata.location.city : ""}</h3>
+                       <h3>{ipdata ? ipdata.location.city : "Navi Mumbai"}</h3>
                    </div>
                    <div className="col-md-3">
                        TIMEZONE
-                       <h3>{ipdata ? ipdata.location.timezone : ""}</h3>
+                       <h3>{ipdata ? ipdata.location.timezone : "+05:30"}</h3>
                    </div>
                    <div className="col-md-3">
                        ISP
-                       <h3>{ipdata ? ipdata.isp : ""}</h3>
+                       <h3>{ipdata ? ipdata.isp : "Reliance Jio Infocomm Limited"}</h3>
                    </div>
             </div>
                </div>
