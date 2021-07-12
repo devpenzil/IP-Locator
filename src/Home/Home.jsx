@@ -21,22 +21,26 @@ function Home() {
         axios.get(`https://geo.ipify.org/api/v1?apiKey=at_yFvUMou2NIuvOi6o0QBY0cpo3ntOp&ipAddress=${userip}`).then((Response)=>{
            // console.log(Response.data)
             setIpdata(Response.data)
-            console.log(ipdata)
+           // console.log(ipdata)
         }).catch((error)=>{
             alert(error.message)
         })
+       // setLat(ipdata.location.lat)
+       // setLng(ipdata.location.lng)
+
+        if (map.current) return; // initialize map only once
+        map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [lat, lng],
+        zoom: zoom
+        });
     }
     //----------------------
 
     useEffect(() => {
         ipcalled()
-        if (map.current) return; // initialize map only once
-        map.current = new mapboxgl.Map({
-        container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [lng, lat],
-        zoom: zoom
-        });
+        
         });
     //--------------------
     const clicked = () =>{
